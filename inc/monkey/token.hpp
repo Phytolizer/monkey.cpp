@@ -1,11 +1,14 @@
 #pragma once
 
+#include <ostream>
 #include <string>
 #include <string_view>
 
 namespace monkey::token {
 struct TokenType {
   std::string_view value;
+
+  bool operator==(const TokenType& other) const;
 };
 
 struct Token {
@@ -33,6 +36,6 @@ constexpr TokenType kRBrace = {"}"};
 constexpr TokenType kFunction = {"FUNCTION"};
 constexpr TokenType kLet = {"LET"};
 
+std::ostream& operator<<(std::ostream& os, const TokenType& tt);
 }  // namespace monkey::token
 
-std::ostream& operator<<(std::ostream& os, const monkey::token::TokenType& tt);
