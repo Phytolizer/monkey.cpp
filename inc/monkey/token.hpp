@@ -37,5 +37,7 @@ constexpr TokenType kFunction = {"FUNCTION"};
 constexpr TokenType kLet = {"LET"};
 
 std::ostream& operator<<(std::ostream& os, const TokenType& tt);
+
+TokenType LookupIdent(const std::string& ident);
 }  // namespace monkey::token
 

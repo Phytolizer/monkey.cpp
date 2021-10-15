@@ -19,5 +19,8 @@ struct Lexer {
  private:
   void ReadChar();
   token::Token CreateToken(const token::TokenType& type, char literal);
+  std::string ReadIdentifier();
+  std::string ReadNumber();
+  void SkipWhitespace();
 };
 }  // namespace monkey::lexer
