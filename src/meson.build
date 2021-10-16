@@ -1,5 +1,6 @@
 monkey_lib = library(
     'monkey',
+	'ast.cpp',
     'lexer.cpp',
     'token.cpp',
     include_directories : incdir
