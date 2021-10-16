@@ -2,6 +2,7 @@ monkey_lib = library(
     'monkey',
 	'ast.cpp',
     'lexer.cpp',
+	'parser.cpp',
     'token.cpp',
     include_directories : incdir
 )
@@ -18,6 +19,7 @@ monkey_repl = executable(
 monkey_test = executable(
     'monkey_test',
     'lexer_test.cpp',
+	'parser_test.cpp',
     include_directories : incdir,
     link_with : monkey_lib,
     dependencies : [gtest_dep, gtest_main_dep],
