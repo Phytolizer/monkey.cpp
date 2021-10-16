@@ -40,6 +40,24 @@ monkey::token::Token monkey::lexer::Lexer::NextToken() {
     case '+':
       tok = CreateToken(token::kPlus, ch_);
       break;
+    case '-':
+      tok = CreateToken(token::kMinus, ch_);
+      break;
+    case '/':
+      tok = CreateToken(token::kSlash, ch_);
+      break;
+    case '*':
+      tok = CreateToken(token::kAsterisk, ch_);
+      break;
+    case '!':
+      tok = CreateToken(token::kBang, ch_);
+      break;
+    case '<':
+      tok = CreateToken(token::kLt, ch_);
+      break;
+    case '>':
+      tok = CreateToken(token::kGt, ch_);
+      break;
     case '\0':
       tok.literal = "";
       tok.type = token::kEof;

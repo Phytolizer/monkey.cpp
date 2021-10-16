@@ -17,6 +17,9 @@ TEST(Lexer, NextToken) {
     };
 
     let result = add(five, ten);
+
+    !-/*5;
+    5 < 10 > 5;
   )";
   struct Test {
     monkey::token::TokenType expected_type;
@@ -42,6 +45,12 @@ TEST(Lexer, NextToken) {
       Test{token::kLParen, "("},    Test{token::kIdent, "five"},
       Test{token::kComma, ","},     Test{token::kIdent, "ten"},
       Test{token::kRParen, ")"},    Test{token::kSemicolon, ";"},
+      Test{token::kBang, "!"},      Test{token::kMinus, "-"},
+      Test{token::kSlash, "/"},     Test{token::kAsterisk, "*"},
+      Test{token::kInt, "5"},       Test{token::kSemicolon, ";"},
+      Test{token::kInt, "5"},       Test{token::kLt, "<"},
+      Test{token::kInt, "10"},      Test{token::kGt, ">"},
+      Test{token::kInt, "5"},       Test{token::kSemicolon, ";"},
       Test{token::kEof, ""},
   };
 

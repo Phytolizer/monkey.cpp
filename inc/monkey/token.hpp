@@ -24,6 +24,13 @@ constexpr TokenType kInt = {"INT"};
 
 constexpr TokenType kAssign = {"="};
 constexpr TokenType kPlus = {"+"};
+constexpr TokenType kMinus = {"-"};
+constexpr TokenType kSlash = {"/"};
+constexpr TokenType kAsterisk = {"*"};
+constexpr TokenType kBang = {"!"};
+
+constexpr TokenType kLt = {"<"};
+constexpr TokenType kGt = {">"};
 
 constexpr TokenType kComma = {","};
 constexpr TokenType kSemicolon = {";"};
@@ -40,4 +47,3 @@ std::ostream& operator<<(std::ostream& os, const TokenType& tt);
 
 TokenType LookupIdent(const std::string& ident);
 }  // namespace monkey::token
-
