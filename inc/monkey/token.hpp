@@ -42,6 +42,11 @@ constexpr TokenType kRBrace = {"}"};
 
 constexpr TokenType kFunction = {"FUNCTION"};
 constexpr TokenType kLet = {"LET"};
+constexpr TokenType kIf = {"IF"};
+constexpr TokenType kElse = {"ELSE"};
+constexpr TokenType kReturn = {"RETURN"};
+constexpr TokenType kTrue = {"TRUE"};
+constexpr TokenType kFalse = {"FALSE"};
 
 std::ostream& operator<<(std::ostream& os, const TokenType& tt);
 

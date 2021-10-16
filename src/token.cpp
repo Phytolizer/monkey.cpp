@@ -4,8 +4,10 @@
 
 static const std::unordered_map<std::string, monkey::token::TokenType>
     kKeywords = {
-        {"fn", monkey::token::kFunction},
-        {"let", monkey::token::kLet},
+        {"fn", monkey::token::kFunction},   {"let", monkey::token::kLet},
+        {"if", monkey::token::kIf},         {"else", monkey::token::kElse},
+        {"return", monkey::token::kReturn}, {"true", monkey::token::kTrue},
+        {"false", monkey::token::kFalse},
 };
 
 std::ostream& monkey::token::operator<<(std::ostream& os,
