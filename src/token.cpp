@@ -14,6 +14,12 @@ std::ostream& monkey::token::operator<<(std::ostream& os,
                                         const monkey::token::TokenType& tt) {
   return os << tt.value;
 }
+
+std::ostream& monkey::token::operator<<(std::ostream& os,
+                                        const monkey::token::Token& t) {
+  return os << "{Type:" << t.type << " Literal:" << t.literal << "}";
+}
+
 bool monkey::token::TokenType::operator==(const TokenType& other) const {
   return value == other.value;
 }

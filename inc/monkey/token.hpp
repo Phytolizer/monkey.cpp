@@ -51,6 +51,7 @@ constexpr TokenType kTrue = {"TRUE"};
 constexpr TokenType kFalse = {"FALSE"};
 
 std::ostream& operator<<(std::ostream& os, const TokenType& tt);
+std::ostream& operator<<(std::ostream& os, const Token& t);
 
 TokenType LookupIdent(const std::string& ident);
 }  // namespace monkey::token
