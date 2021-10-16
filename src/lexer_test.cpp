@@ -26,6 +26,9 @@ TEST(Lexer, NextToken) {
     } else {
       return false;
     }
+
+    10 == 10;
+    10 != 9;
   )";
   struct Test {
     monkey::token::TokenType expected_type;
@@ -65,7 +68,11 @@ TEST(Lexer, NextToken) {
       Test{token::kRBrace, "}"},    Test{token::kElse, "else"},
       Test{token::kLBrace, "{"},    Test{token::kReturn, "return"},
       Test{token::kFalse, "false"}, Test{token::kSemicolon, ";"},
-      Test{token::kRBrace, "}"},    Test{token::kEof, ""},
+      Test{token::kRBrace, "}"},    Test{token::kInt, "10"},
+      Test{token::kEq, "=="},       Test{token::kInt, "10"},
+      Test{token::kSemicolon, ";"}, Test{token::kInt, "10"},
+      Test{token::kNotEq, "!="},    Test{token::kInt, "9"},
+      Test{token::kSemicolon, ";"}, Test{token::kEof, ""},
   };
 
   auto lexer = Lexer{kInput};

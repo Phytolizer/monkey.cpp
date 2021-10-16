@@ -18,7 +18,9 @@ struct Lexer {
 
  private:
   void ReadChar();
+  char PeekChar();
   token::Token CreateToken(const token::TokenType& type, char literal);
+  token::Token CreateToken(const token::TokenType& type, char c1, char c2);
   std::string ReadIdentifier();
   std::string ReadNumber();
   void SkipWhitespace();

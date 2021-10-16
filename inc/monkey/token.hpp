@@ -31,6 +31,8 @@ constexpr TokenType kBang = {"!"};
 
 constexpr TokenType kLt = {"<"};
 constexpr TokenType kGt = {">"};
+constexpr TokenType kEq = {"=="};
+constexpr TokenType kNotEq = {"!="};
 
 constexpr TokenType kComma = {","};
 constexpr TokenType kSemicolon = {";"};

@@ -17,7 +17,22 @@ monkey::token::Token monkey::lexer::Lexer::NextToken() {
 
   switch (ch_) {
     case '=':
-      tok = CreateToken(token::kAssign, ch_);
+      if (PeekChar() == '=') {
+        char ch = ch_;
+        ReadChar();
+        tok = CreateToken(token::kEq, ch, ch_);
+      } else {
+        tok = CreateToken(token::kAssign, ch_);
+      }
+      break;
+    case '!':
+      if (PeekChar() == '=') {
+        char ch = ch_;
+        ReadChar();
+        tok = CreateToken(token::kNotEq, ch, ch_);
+      } else {
+        tok = CreateToken(token::kBang, ch_);
+      }
       break;
     case ';':
       tok = CreateToken(token::kSemicolon, ch_);
@@ -48,9 +63,6 @@ monkey::token::Token monkey::lexer::Lexer::NextToken() {
       break;
     case '*':
       tok = CreateToken(token::kAsterisk, ch_);
-      break;
-    case '!':
-      tok = CreateToken(token::kBang, ch_);
       break;
     case '<':
       tok = CreateToken(token::kLt, ch_);
@@ -90,10 +102,25 @@ void monkey::lexer::Lexer::ReadChar() {
   ++read_position_;
 }
 
+char monkey::lexer::Lexer::PeekChar() {
+  if (read_position_ >= static_cast<int>(input_.size())) {
+    return '\0';
+  } else {
+    return input_[read_position_];
+  }
+}
+
 monkey::token::Token monkey::lexer::Lexer::CreateToken(
     const token::TokenType& type, char literal) {
   std::ostringstream ss;
   ss << literal;
+  return token::Token{.type = type, .literal = ss.str()};
+}
+
+monkey::token::Token monkey::lexer::Lexer::CreateToken(
+    const token::TokenType& type, char c1, char c2) {
+  std::ostringstream ss;
+  ss << c1 << c2;
   return token::Token{.type = type, .literal = ss.str()};
 }
 
