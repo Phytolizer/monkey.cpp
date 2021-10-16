@@ -8,10 +8,10 @@ monkey_lib = library(
 monkey_repl = executable(
     'monkey-repl',
 	'repl_main.cpp',
+	'repl_user.cpp',
     'repl.cpp',
     include_directories : incdir,
     link_with : monkey_lib,
-	dependencies : [subprocess_dep]
 )
 
 monkey_test = executable(
@@ -19,7 +19,7 @@ monkey_test = executable(
     'lexer_test.cpp',
     include_directories : incdir,
     link_with : monkey_lib,
-    dependencies : [gtest_dep, gtest_main_dep]
+    dependencies : [gtest_dep, gtest_main_dep],
 )
 
 test('monkey tests', monkey_test)
