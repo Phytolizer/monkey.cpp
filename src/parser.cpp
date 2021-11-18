@@ -1,6 +1,6 @@
-#include "monkey/parser.hpp"
-
 #include <sstream>
+
+#include "monkey/parser.hpp"
 
 monkey::parser::Parser::Parser(monkey::lexer::Lexer&& l) : l{l} {
   NextToken();
@@ -35,6 +35,9 @@ monkey::parser::Parser::ParseStatement() {
   if (cur_token.type == token::kLet) {
     return ParseLetStatement();
   }
+  if (cur_token.type == token::kReturn) {
+    return ParseReturnStatement();
+  }
   return nullptr;
 }
 
@@ -58,6 +61,20 @@ monkey::parser::Parser::ParseLetStatement() {
   }
 
   return std::make_unique<ast::LetStatement>(std::move(stmt));
+}
+
+std::unique_ptr<monkey::ast::ReturnStatement>
+monkey::parser::Parser::ParseReturnStatement() {
+  ast::ReturnStatement stmt{cur_token};
+
+  NextToken();
+
+  // TODO
+  while (!CurTokenIs(token::kSemicolon)) {
+    NextToken();
+  }
+
+  return std::make_unique<ast::ReturnStatement>(std::move(stmt));
 }
 
 bool monkey::parser::Parser::ExpectPeek(const token::TokenType& type) {

@@ -5,6 +5,7 @@
 #include <string_view>
 
 using monkey::ast::LetStatement;
+using monkey::ast::ReturnStatement;
 using monkey::lexer::Lexer;
 using monkey::parser::Parser;
 
@@ -40,6 +41,28 @@ TEST_CASE("Parser: let statements") {
     const auto& tt = kTests[i];
     const auto* stmt = program.statements[i].get();
     TestLetStatement(stmt, tt.expected_identifier);
+  }
+}
+
+TEST_CASE("Parser: return statements") {
+  constexpr std::string_view kInput = R"(
+    return 5;
+    return 10;
+    return 993322;
+  )";
+
+  auto l = Lexer{kInput};
+  auto p = Parser{std::move(l)};
+
+  auto program = p.ParseProgram();
+  CheckParserErrors(p);
+  REQUIRE_EQ(program.statements.size(), 3);
+
+  for (std::size_t i = 0; i < program.statements.size(); ++i) {
+    const auto* return_stmt =
+        dynamic_cast<const ReturnStatement*>(program.statements[i].get());
+    REQUIRE(return_stmt != nullptr);
+    REQUIRE(return_stmt->TokenLiteral() == "return");
   }
 }
 

@@ -18,3 +18,10 @@ monkey::ast::LetStatement::LetStatement(token::Token token) : token{token} {}
 std::string monkey::ast::LetStatement::TokenLiteral() const {
   return token.literal;
 }
+
+monkey::ast::ReturnStatement::ReturnStatement(token::Token token)
+    : token{token} {}
+
+std::string monkey::ast::ReturnStatement::TokenLiteral() const {
+  return token.literal;
+}

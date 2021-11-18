@@ -39,4 +39,13 @@ struct LetStatement : Statement {
 
   std::string TokenLiteral() const override;
 };
+
+struct ReturnStatement : Statement {
+  token::Token token;
+  std::unique_ptr<Expression> return_value;
+
+  explicit ReturnStatement(token::Token token);
+
+  std::string TokenLiteral() const override;
+};
 }  // namespace monkey::ast

@@ -25,6 +25,7 @@ struct Parser {
   void NextToken();
   std::unique_ptr<ast::Statement> ParseStatement();
   std::unique_ptr<ast::LetStatement> ParseLetStatement();
+  std::unique_ptr<ast::ReturnStatement> ParseReturnStatement();
   bool ExpectPeek(const token::TokenType& type);
   bool CurTokenIs(const token::TokenType& type);
   bool PeekTokenIs(const token::TokenType& type);
