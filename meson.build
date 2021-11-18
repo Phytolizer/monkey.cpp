@@ -5,4 +5,3 @@ gtest_main_dep = dependency('gtest_main')
 
 incdir = include_directories('inc')
 subdir('src')
-
