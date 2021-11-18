@@ -13,6 +13,6 @@ CFLAGS += -fsanitize=address,undefined
 LDFLAGS += -fsanitize=address,undefined
 AR = llvm-ar
 
-!cc = |> $(CC) $(CFLAGS) -I &(incdir) -c %f -o %o |> %B.o
+!cc = |> ^j^ $(CC) $(CFLAGS) -I &(incdir) -c %f -o %o |> %B.o
 !ar = |> $(AR) crs %o %f |>
 !ld = |> $(CC) $(LDFLAGS) -o %o %f %i $(LIBS) |>

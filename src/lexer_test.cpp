@@ -1,5 +1,6 @@
-#include <gtest/gtest.h>
+#include <doctest/doctest.h>
 
+#include <array>
 #include <monkey/lexer.hpp>
 #include <monkey/token.hpp>
 #include <string_view>
@@ -7,7 +8,7 @@
 namespace token = monkey::token;
 using monkey::lexer::Lexer;
 
-TEST(Lexer, NextToken) {
+TEST_CASE("Lexer: next token") {
   constexpr std::string_view kInput = R"(
     let five = 5;
     let ten = 10;
@@ -80,7 +81,7 @@ TEST(Lexer, NextToken) {
   for (const auto& tt : kTests) {
     auto tok = lexer.NextToken();
 
-    EXPECT_EQ(tok.type, tt.expected_type);
-    EXPECT_EQ(tok.literal, tt.expected_literal);
+    CHECK_EQ(tok.type, tt.expected_type);
+    CHECK_EQ(tok.literal, tt.expected_literal);
   }
 }

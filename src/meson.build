@@ -22,7 +22,7 @@ monkey_test = executable(
     'parser_test.cpp',
     include_directories : incdir,
     link_with : monkey_lib,
-    dependencies : [gtest_dep, gtest_main_dep],
+    dependencies : [doctest_dep],
 )
 
 test('monkey tests', monkey_test)

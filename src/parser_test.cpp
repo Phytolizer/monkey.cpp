@@ -1,5 +1,4 @@
-#include <gtest/gtest-death-test.h>
-#include <gtest/gtest.h>
+#include <doctest/doctest.h>
 
 #include <array>
 #include <monkey/parser.hpp>
@@ -13,7 +12,7 @@ static void CheckParserErrors(const Parser& p);
 static void TestLetStatement(const monkey::ast::Statement* stmt,
                              std::string_view name);
 
-TEST(Parser, LetStatements) {
+TEST_CASE("Parser: let statements") {
   constexpr std::string_view kInput = R"(
     let x = 5;
     let y = 10;
@@ -25,7 +24,7 @@ TEST(Parser, LetStatements) {
 
   auto program = p.ParseProgram();
   CheckParserErrors(p);
-  ASSERT_EQ(program.statements.size(), 3);
+  REQUIRE_EQ(program.statements.size(), 3);
 
   struct Test {
     std::string_view expected_identifier;
@@ -45,17 +44,17 @@ TEST(Parser, LetStatements) {
 }
 
 static void CheckParserErrors(const Parser& p) {
-  EXPECT_TRUE(p.Errors().empty());
+  CHECK(p.Errors().empty());
   for (const auto& err : p.Errors()) {
-    ADD_FAILURE() << err;
+    FAIL_CHECK(err);
   }
 }
 
 static void TestLetStatement(const monkey::ast::Statement* stmt,
                              std::string_view name) {
-  EXPECT_EQ(stmt->TokenLiteral(), "let");
+  CHECK_EQ(stmt->TokenLiteral(), "let");
   const auto* let_stmt = dynamic_cast<const LetStatement*>(stmt);
-  ASSERT_NE(let_stmt, nullptr);
-  EXPECT_EQ(let_stmt->name.value, name);
-  EXPECT_EQ(let_stmt->name.TokenLiteral(), name);
+  REQUIRE_NE(let_stmt, nullptr);
+  CHECK_EQ(let_stmt->name.value, name);
+  CHECK_EQ(let_stmt->name.TokenLiteral(), name);
 }
