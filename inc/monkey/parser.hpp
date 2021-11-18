@@ -6,6 +6,7 @@
 #include "monkey/ast.hpp"
 #include "monkey/lexer.hpp"
 #include "monkey/token.hpp"
+
 namespace monkey::parser {
 struct Parser {
   lexer::Lexer l;
