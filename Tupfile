@@ -1,0 +1,6 @@
+include_rules
+
+: src/ast.o src/lexer.o src/parser.o src/token.o |> !ar |> libmonkey.a
+: src/repl_main.o src/repl_user.o src/repl.o | libmonkey.a |> !ld |> monkey_repl.exe
+LIBS = -lgtest -lgtest_main
+: src/lexer_test.o src/parser_test.o | libmonkey.a |> !ld |> monkey_test.exe

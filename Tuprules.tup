@@ -1,0 +1,18 @@
+.gitignore
+
+&incdir = inc
+
+CC = clang++
+CFLAGS += -Wall
+CFLAGS += -Wextra
+CFLAGS += -Wpedantic
+CFLAGS += -Werror=return-type
+CFLAGS += -std=c++20
+CFLAGS += -g3
+CFLAGS += -fsanitize=address,undefined
+LDFLAGS += -fsanitize=address,undefined
+AR = llvm-ar
+
+!cc = |> $(CC) $(CFLAGS) -I &(incdir) -c %f -o %o |> %B.o
+!ar = |> $(AR) crs %o %f |>
+!ld = |> $(CC) $(LDFLAGS) -o %o %f %i $(LIBS) |>
