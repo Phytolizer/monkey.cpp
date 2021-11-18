@@ -20,6 +20,7 @@ monkey_test = executable(
     'monkey_test',
     'lexer_test.cpp',
     'parser_test.cpp',
+    'test_main.cpp',
     include_directories : incdir,
     link_with : monkey_lib,
     dependencies : [doctest_dep],
